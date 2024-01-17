@@ -1,20 +1,16 @@
-enum QuizType {
-  MCQ = "MCQ",
-  OPEN = "OPEN",
-}
+import { z } from "zod";
 
-type QuizSession = {
-  id: string;
+export type QuizSession = {
   timeStarted: Date;
+  timeEnded: Date | undefined;
+  quizType: string;
   topic: string;
-  timeEnded: Date;
-  quizType: QuizType;
-  questions: Question[];
+  questions: Promise<any[]>;
 };
 
-type Question = {
+export type Question = {
   id: string;
-  quiType: QuizType;
+  quizType: "mcq" | "open";
   question: string;
   options: string[];
   correctAnswer: string;
