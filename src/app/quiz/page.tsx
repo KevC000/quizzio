@@ -27,14 +27,20 @@ const Quiz = (props: Props) => {
 
   return (
     <>
-      {quizSessionState?.quizType === "mcq" ? (
-        <MCQ
-          questions={questions}
-          currentQuestionIndex={currentQuestionIndex}
-        />
-      ) : (
-        <Open />
-      )}
+      {quizSessionState !== undefined &&
+        (quizSessionState?.quizType === "mcq" ? (
+          <MCQ
+            topic={quizSessionState.topic}
+            questions={questions}
+            currentQuestionIndex={currentQuestionIndex}
+          />
+        ) : (
+          <Open
+            topic={quizSessionState.topic}
+            questions={questions}
+            currentQuestionIndex={currentQuestionIndex}
+          />
+        ))}
     </>
   );
 };
